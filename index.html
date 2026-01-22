@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow-x:hidden;
+  transition:background 1.2s ease;
+}
+body.night{
+  background:radial-gradient(circle at top,#1b2735,#090a0f);
+}
+
+/* Credit */
+.credit{
+  position:fixed;
+  bottom:12px;
+  right:14px;
+  font-size:.8rem;
+  opacity:.7;
+  z-index:5;
+  color:#333;
+}
+body.night .credit{color:#ddd}
+
+/* Card */
+.card{
+  background:#fff;
+  max-width:480px;
+  width:92%;
+  padding:26px;
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  z-index:2;
+}
+body.night .card{
+  background:#121826;
+  color:#f1f1f1;
+}
+
+/* Gallery */
+.gallery{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:15px 0;
+}
+.gallery img{
+  width:110px;
+  height:110px;
+  border-radius:15px;
+  object-fit:cover;
+  box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+/* Button */
+button{
+  margin-top:18px;
+  padding:12px 26px;
+  border:none;
+  border-radius:25px;
+  background:#ff5e7e;
+  color:#fff;
+  font-size:1rem;
+}
+body.night button{background:#ff7a9c}
+
+.hidden{display:none}
+
+/* Letter */
+.letter{
+  margin-top:18px;
+  background:#fff6f8;
+  padding:18px;
+  border-radius:15px;
+  text-align:left;
+  font-size:.95rem;
+}
+body.night .letter{background:#1c2233}
+
+/* Name reveal */
+.name-reveal{
+  text-align:center;
+  font-size:1.6rem;
+  font-weight:bold;
+  margin-bottom:15px;
+  opacity:0;
+  color:#ffb6c1;
+  animation:fadeName 2s ease forwards;
+}
+@keyframes fadeName{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Typing */
+.letter p,.quran{opacity:0}
+.type{opacity:1 !important}
+
+/* Glow */
+.glow{
+  color:#ffd6e4;
+  text-shadow:0 0 4px rgba(255,182,193,.6),
+              0 0 8px rgba(255,105,180,.4);
+}
+
+/* Quran */
+.quran{
+  margin-top:15px;
+  padding:14px;
+  border-left:4px solid #2ecc71;
+  background:#ecfdf3;
+  font-family:'Amiri',serif;
+}
+body.night .quran{
+  background:#10261a;
+  color:#eafaf1;
+}
+
+/* Stickers */
+.sticker{
+  position:fixed;
+  bottom:-120px;
+  width:90px;
+  animation:floatUp 10s linear infinite;
+  z-index:3;
+}
+@keyframes floatUp{to{transform:translateY(-120vh)}}
+.sticker.left{left:6%}
+.sticker.right{right:6%}
+
+/* Moon & stars */
+.moon{
+  position:fixed;
+  top:8%;
+  right:8%;
+  font-size:3rem;
+  opacity:0;
+}
+.star{
+  position:fixed;
+  opacity:0;
+  animation:twinkle 3s infinite alternate;
+}
+@keyframes twinkle{
+  from{opacity:.3}to{opacity:1}
+}
+
+/* Hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:1.2rem;
+  opacity:.6;
+  animation:heartFloat 6s linear forwards;
+}
+@keyframes heartFloat{
+  to{transform:translateY(-120vh);opacity:0}
+}
+
+/* Fireworks */
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="credit">Made by your priyamanavan 🤍</div>
+
+<canvas id="fireworks"></canvas>
+
+<div id="moon" class="moon">🌙</div>
+<div class="star" style="top:18%;left:22%">✨</div>
+<div class="star" style="top:26%;left:60%">✦</div>
+<div class="star" style="top:32%;left:40%">✧</div>
+
+<div class="card">
+  <h1>Happy Birthday 🎉</h1>
+  <div class="name">My Priyamanavaley 🤍</div>
+  <div id="countdown"></div>
+
+  <div class="gallery">
+    <img src="images/1.jpg">
+    <img src="images/2.jpg">
+    <img src="images/3.jpg">
+  </div>
+
+  <button id="openLetter">Open my letter 💌</button>
+
+  <div id="letter" class="letter hidden">
+
+    <div class="name-reveal">Munima 🤍</div>
+
+    <p>
+      My dear <b>shaa</b>, <b>moo</b>, <b>kolandha</b>, <b>kiddo</b> 🫂💕<br>
+      aprm <b>en priyamanavalehh</b> 🫂
+    </p>
+
+    <p>
+      Happy Birthday daa <span class="glow">my unpaid therapist</span> 💕🧚🏻‍♂️
+    </p>
+
+    <p>
+      Enaku enna solluradhunu theriyala.  
+      Ippa naa indha wish pannuradhu kuda crct ahh nu theriyala.
+    </p>
+
+    <p>
+      Irundhalum yennudaiya priyamanavaluku  
+      oru sila vaarthaigal…
+    </p>
+
+    <p>
+      Deyy <b>Munima</b> 🫂  
+      first enaku un birthday la wish pannra chance ahh  
+      kuduthadhuku nandrigal 🙏🏻💕
+    </p>
+
+    <p>
+      Naa wish panra first wish uhh  
+      nalla oru memory ahh irukum nu  
+      edho ennala mudinja  
+      oru chinna surprise 😁
+    </p>
+
+    <p>
+      <b>THIS IS MY LETTER</b><br>
+      <b>AND MY WISH</b>
+    </p>
+
+    <div class="quran">
+      ﴿ وَالَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ﴾<br><br>
+      “By Allah, hearts find peace in the remembrance of Him.”<br>
+      <b>— Quran 13:28</b>
+    </div>
+
+    <p style="margin-top:10px;">
+      Always in my duʿā 🤍
+    </p>
+
+  </div>
+</div>
+
+<!-- Stickers -->
+<div id="stickers" class="hidden">
+  <div class="sticker left"><img src="images/doraemon.png" width="100%"></div>
+  <div class="sticker right"><img src="images/shinchan.png" width="100%"></div>
+</div>
+
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const birthday=new Date("2026-01-23T00:00:00");
+setInterval(()=>{
+  const d=birthday-new Date();
+  document.getElementById("countdown").innerText=
+    d<=0?"🎂 It’s your birthday today!":
+    Math.floor(d/864e5)+" days left 🎉";
+},1000);
+
+const c=document.getElementById("fireworks"),x=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let p=[];
+function fw(X,Y){for(let i=0;i<40;i++)p.push({x:X,y:Y,a:Math.random()*6.28,s:Math.random()*4+2,l:60})}
+(function a(){
+  x.clearRect(0,0,c.width,c.height);
+  p.forEach((o,i)=>{o.x+=Math.cos(o.a)*o.s;o.y+=Math.sin(o.a)*o.s;o.l--;x.fillRect(o.x,o.y,2,2);if(o.l<=0)p.splice(i,1)});
+  requestAnimationFrame(a);
+})();
+
+document.getElementById("openLetter").onclick=()=>{
+  document.body.classList.add("night");
+  document.getElementById("letter").classList.remove("hidden");
+  document.getElementById("stickers").classList.remove("hidden");
+  document.getElementById("moon").style.opacity=1;
+  document.querySelectorAll(".star").forEach(s=>s.style.opacity=1);
+  document.getElementById("bgm").play();
+  fw(innerWidth/2,innerHeight/3);
+
+  const lines=document.querySelectorAll(".letter p,.quran");
+  let d=500;
+  lines.forEach(l=>{setTimeout(()=>l.classList.add("type"),d);d+=900});
+
+  const hearts=setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="💕";
+    h.style.left=Math.random()*100+"%";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },700);
+  setTimeout(()=>clearInterval(hearts),12000);
+};
+</script>
+
+</body>
+</html>
